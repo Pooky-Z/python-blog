@@ -1,12 +1,13 @@
 # coding=UTF-8
 
-import logging, asyncio
+import logging 
+import asyncio
 import aiomysql
 
 def log(sql,args=()):
     logging.info("SQL",sql)
 
-#´´½¨Á¬½Ó³Ø£¬httpÇëÇóÖ±½Ó»ñÈ¡Êı¾İ¿âÁ¬½Ó
+#åˆ›å»ºè¿æ¥æ± ï¼Œhttpè¯·æ±‚ç›´æ¥è·å–æ•°æ®åº“è¿æ¥
 async def create_pool(loop,**kw):
     logging.info("reate database connection pool")
     global __pool
@@ -20,9 +21,10 @@ async def create_pool(loop,**kw):
         maxsize=kw.get("maxsize",10),
         minsize=kw.get("minsze",1),
         loop=loop
+
     )
 
-#select²Ù×÷
+#selectæ“ä½œ
 async def select(sql,args,soize=None):
     log(sql,args)
     global __pool
@@ -36,7 +38,7 @@ async def select(sql,args,soize=None):
         logging.info("rows returned:",len(rs))
         return rs
 
-#¶¨ÒåÍ¨ÓÃº¯Êıexecute
+#å®šä¹‰é€šç”¨å‡½æ•°execute
 async def execute(sql,args,autocommit=True):
     log(sql)
     async with __pool as conn:
