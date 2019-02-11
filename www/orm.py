@@ -1,7 +1,9 @@
 # coding=UTF-8
 
-import logging import asyncio
+import logging 
+import asyncio
 import aiomysql
+import datetime
 
 def log(sql,args=()):
     logging.info("SQL",sql)
