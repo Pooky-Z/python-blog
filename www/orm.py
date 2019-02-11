@@ -1,7 +1,6 @@
 # coding=UTF-8
 
-import logging 
-import asyncio
+import logging import asyncio
 import aiomysql
 
 def log(sql,args=()):
